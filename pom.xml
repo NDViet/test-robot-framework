@@ -6,33 +6,67 @@
 
     <groupId>com.ndviet</groupId>
     <artifactId>test-robot-framework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <test-automation-fwk.version>1.0.0-SNAPSHOT</test-automation-fwk.version>
+        <robotframework.version>4.1.2</robotframework.version>
+        <robotframework-maven-plugin.version>2.1.0</robotframework-maven-plugin.version>
+        <outputDirectory>${project.build.directory}/reports</outputDirectory>
+        <libsDirectory>${project.build.directory}/libs</libsDirectory>
+        <jarsDirectory>${project.build.directory}/jars</jarsDirectory>
+        <flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
+        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <outputDirectory>${project.build.directory}/robotframework-reports</outputDirectory>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.robotframework</groupId>
             <artifactId>robotframework</artifactId>
-            <version>4.1.2</version>
+            <version>${robotframework.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ndviet</groupId>
             <artifactId>webui-keywords</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${test-automation-fwk.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-lib-dependencies</id>
@@ -55,13 +89,11 @@
                                 <artifactItem>
                                     <groupId>com.ndviet</groupId>
                                     <artifactId>webui-keywords</artifactId>
-                                    <version>1.0.0-SNAPSHOT</version>
+                                    <version>${test-automation-fwk.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/libs</outputDirectory>
-                                    <includes>
-                                        **/resources/*,**/*.py,**/*.txt,**/*.exe,**/*.jar,**/*.xml,**/*.class,**/*.properties
-                                    </includes>
+                                    <includes>**/*.jar,**/*.xml,**/*.class,**/*.properties</includes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -72,24 +104,18 @@
             <plugin>
                 <groupId>org.robotframework</groupId>
                 <artifactId>robotframework-maven-plugin</artifactId>
-                <version>2.1.0</version>
+                <version>${robotframework-maven-plugin.version}</version>
                 <configuration>
+                    <libdoc/>
+                    <testdoc/>
                     <outputDirectory>${outputDirectory}</outputDirectory>
                     <extraPathDirectories>
-                        <extraPathDirectory>${project.build.directory}/libs</extraPathDirectory>
-                        <extraPathDirectory>${project.build.directory}/jars/*.jar</extraPathDirectory>
+                        <extraPathDirectory>${libsDirectory}</extraPathDirectory>
+                        <extraPathDirectory>${jarsDirectory}</extraPathDirectory>
                     </extraPathDirectories>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
