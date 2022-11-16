@@ -1,0 +1,1 @@
+[![Run Test](https://github.com/vietnd96/test-robot-framework/actions/workflows/robotframework-maven.yml/badge.svg)](https://github.com/vietnd96/test-robot-framework/actions/workflows/robotframework-maven.yml)
