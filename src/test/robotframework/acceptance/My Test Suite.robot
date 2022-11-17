@@ -2,6 +2,8 @@
 Library    com.ndviet.WebUI
 
 **** Test Cases ***
-My First Test Case
+Sample Test Case
+    [Documentation]    This sample test case is used to test library keywords which are retained by Java
     [Tags]    test01
-    Open Browser
+    Open Browser    https://google.com
+    [Teardown]    Close Browser
