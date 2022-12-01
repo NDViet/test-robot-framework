@@ -6,18 +6,32 @@
 
     <groupId>com.ndviet</groupId>
     <artifactId>test-robot-framework</artifactId>
+    <name>Robot Test Automation Repository</name>
     <version>${revision}</version>
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
+        <!-- Properties for upstream test-fwk -->
         <test-automation-fwk.version>1.0.0-SNAPSHOT</test-automation-fwk.version>
-        <robotframework.version>4.1.2</robotframework.version>
-        <robotframework-maven-plugin.version>2.1.0</robotframework-maven-plugin.version>
+        <!-- Properties for Robot Framework configuration -->
         <outputDirectory>${project.build.directory}/reports</outputDirectory>
         <libsDirectory>${project.build.directory}/libs</libsDirectory>
         <jarsDirectory>${project.build.directory}/jars</jarsDirectory>
+        <!-- Properties for Test Configuration files (precedence level: system props -> ordering<N> -> base) -->
+        <configuration.base>${project.basedir}/src/test/resources/configuration/sample/baseConfiguration.yaml
+        </configuration.base>
+        <configuration.ordering1>${project.basedir}/src/test/resources/configuration/sample/cloudEnv.json
+        </configuration.ordering1>
+        <configuration.ordering2>${project.basedir}/src/test/resources/configuration/sample/localTestEnv.yaml
+        </configuration.ordering2>
+        <configuration.ordering3>${project.basedir}/src/test/resources/configuration/sample/my-custom.properties
+        </configuration.ordering3>
+        <!-- Properties for dependencies version -->
+        <robotframework.version>4.1.2</robotframework.version>
+        <robotframework-maven-plugin.version>2.1.0</robotframework-maven-plugin.version>
         <flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
         <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
+        <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +45,12 @@
         </dependency>
         <dependency>
             <groupId>com.ndviet</groupId>
-            <artifactId>webui-keywords</artifactId>
+            <artifactId>robot-keywords-webui</artifactId>
+            <version>${test-automation-fwk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ndviet</groupId>
+            <artifactId>robot-keywords-configuration</artifactId>
             <version>${test-automation-fwk.version}</version>
         </dependency>
     </dependencies>
@@ -88,7 +107,16 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.ndviet</groupId>
-                                    <artifactId>webui-keywords</artifactId>
+                                    <artifactId>robot-keywords-webui</artifactId>
+                                    <version>${test-automation-fwk.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                                    <includes>**/*.jar,**/*.xml,**/*.class,**/*.properties</includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.ndviet</groupId>
+                                    <artifactId>robot-keywords-configuration</artifactId>
                                     <version>${test-automation-fwk.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -115,6 +143,41 @@
                     </extraPathDirectories>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>${properties-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>set-configuration-base</id>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>configuration.base</name>
+                                    <value>${configuration.base}</value>
+                                </property>
+                                <property>
+                                    <name>configuration.ordering1</name>
+                                    <value>${configuration.ordering1}</value>
+                                </property>
+                                <property>
+                                    <name>configuration.ordering2</name>
+                                    <value>${configuration.ordering2}</value>
+                                </property>
+                                <property>
+                                    <name>configuration.ordering3</name>
+                                    <value>${configuration.ordering3}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
