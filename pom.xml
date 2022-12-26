@@ -190,6 +190,10 @@
                                     <name>log4j.configuration</name>
                                     <value>${log4j.configuration}</value>
                                 </property>
+                                <property>
+                                    <name>applicationContextPath</name>
+                                    <value>/spring/application-context.xml</value>
+                                </property>
                             </properties>
                         </configuration>
                     </execution>

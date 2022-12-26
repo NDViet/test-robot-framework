@@ -6,9 +6,6 @@ Library    com.ndviet.keyword.Configuration    WITH NAME    Configuration
 Verify Statistics Chart
     [Documentation]    This sample test case is used to test library keywords which are retained by Java
     [Tags]    test01
-    ${configuration.base}    Get Value    configuration.base
-    Log    ${configuration.base}
-    Get Object Repository Helper
     Open Browser    https://fundingsocieties.com
     Click    Menu.Statistics
     Click    Statistics.Tab.Repayment
