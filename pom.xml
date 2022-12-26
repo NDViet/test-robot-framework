@@ -26,6 +26,8 @@
         </configuration.ordering2>
         <configuration.ordering3>${project.basedir}/src/test/resources/configuration/sample/my-custom.properties
         </configuration.ordering3>
+        <testObjectRepository.directory>${project.basedir}/src/test/resources/Object_Repository</testObjectRepository.directory>
+        <testObjectRepository.webIdentifiers>Web_Identifiers</testObjectRepository.webIdentifiers>
         <!-- Properties for dependencies version -->
         <robotframework.version>4.1.2</robotframework.version>
         <robotframework-maven-plugin.version>2.1.0</robotframework-maven-plugin.version>
@@ -35,6 +37,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j.configuration>${project.basedir}/src/log4j.properties</log4j.configuration>
     </properties>
 
     <dependencies>
@@ -141,6 +144,9 @@
                         <extraPathDirectory>${libsDirectory}</extraPathDirectory>
                         <extraPathDirectory>${jarsDirectory}</extraPathDirectory>
                     </extraPathDirectories>
+                    <listeners>
+                        <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
+                    </listeners>
                 </configuration>
             </plugin>
 
@@ -171,6 +177,18 @@
                                 <property>
                                     <name>configuration.ordering3</name>
                                     <value>${configuration.ordering3}</value>
+                                </property>
+                                <property>
+                                    <name>testObjectRepository.directory</name>
+                                    <value>${testObjectRepository.directory}</value>
+                                </property>
+                                <property>
+                                    <name>testObjectRepository.webIdentifiers</name>
+                                    <value>${testObjectRepository.webIdentifiers}</value>
+                                </property>
+                                <property>
+                                    <name>log4j.configuration</name>
+                                    <value>${log4j.configuration}</value>
                                 </property>
                             </properties>
                         </configuration>

@@ -1,12 +1,19 @@
 *** Settings ***
-Library    com.ndviet.WebUI    WITH NAME    WebUI
-Library    com.ndviet.Configuration    WITH NAME    Configuration
+Library    com.ndviet.keyword.WebUI    WITH NAME    WebUI
+Library    com.ndviet.keyword.Configuration    WITH NAME    Configuration
 
 **** Test Cases ***
-Sample Test Case
+Verify Statistics Chart
     [Documentation]    This sample test case is used to test library keywords which are retained by Java
     [Tags]    test01
-    Open Browser    https://google.com
+    ${configuration.base}    Get Value    configuration.base
+    Log    ${configuration.base}
+    Get Object Repository Helper
+    Open Browser    https://fundingsocieties.com
+    Click    Menu.Statistics
+    Click    Statistics.Tab.Repayment
+    #Click    Charts.Line Chart
+    Click    Statistics.Tab.General
     [Teardown]    Close Browser
 
 Get My Global Configuration In Test
