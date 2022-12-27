@@ -1,0 +1,23 @@
+selenium:
+  default:
+    timeOut: 15
+  hub:
+    url: "http://127.0.0.1:4444"
+  browser:
+    type: chrome
+    chrome:
+      args:
+        - "start-maximized"
+        - "--incognito"
+        - "high-dpi-support=0.8"
+        - "force-device-scale-factor=0.8"
+        - "--disable-extensions"
+        - "--disable-popup-blocking"
+        - "enable-automation"
+        #- "--proxy-server=10.10.10.10:8080"
+    firefox:
+      args:
+        - "--ignore-certificate-errors"
+        - "--start-maximized"
+        - "--enable-logging"
+        - "-private"

@@ -1,8 +1,0 @@
-ip: 127.0.0.1
-username: machine
-password: test!@123
-service1:
-  port: 8080
-
-service2:
-  port: 5601

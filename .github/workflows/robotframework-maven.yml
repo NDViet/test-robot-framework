@@ -7,8 +7,8 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v3
-    - name: Build with Maven
-      run: mvn clean install -U
-    - name: Test with Robot Framework
-      run: mvn -f pom.xml initialize robotframework:run -Dincludes=test01
+      - uses: actions/checkout@v3
+      - name: Build with Maven
+        run: mvn clean install -U
+      - name: Test with Robot Framework
+        run: mvn -f pom.xml initialize robotframework:run -Dincludes=test01

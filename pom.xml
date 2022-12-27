@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,15 +18,12 @@
         <libsDirectory>${project.build.directory}/libs</libsDirectory>
         <jarsDirectory>${project.build.directory}/jars</jarsDirectory>
         <!-- Properties for Test Configuration files (precedence level: system props -> ordering<N> -> base) -->
-        <configuration.base>${project.basedir}/src/test/resources/configuration/sample/baseConfiguration.yaml
+        <configuration.base>${project.basedir}/src/test/resources/configuration/baseConfiguration.yaml
         </configuration.base>
-        <configuration.ordering1>${project.basedir}/src/test/resources/configuration/sample/cloudEnv.json
+        <configuration.ordering1>${project.basedir}/src/test/resources/configuration/seleniumConfiguration.yaml
         </configuration.ordering1>
-        <configuration.ordering2>${project.basedir}/src/test/resources/configuration/sample/localTestEnv.yaml
-        </configuration.ordering2>
-        <configuration.ordering3>${project.basedir}/src/test/resources/configuration/sample/my-custom.properties
-        </configuration.ordering3>
-        <testObjectRepository.directory>${project.basedir}/src/test/resources/Object_Repository</testObjectRepository.directory>
+        <testObjectRepository.directory>${project.basedir}/src/test/resources/Object_Repository
+        </testObjectRepository.directory>
         <testObjectRepository.webIdentifiers>Web_Identifiers</testObjectRepository.webIdentifiers>
         <!-- Properties for dependencies version -->
         <robotframework.version>4.1.2</robotframework.version>
@@ -53,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>com.ndviet</groupId>
-            <artifactId>robot-keywords-configuration</artifactId>
+            <artifactId>robot-keywords-utilities</artifactId>
             <version>${test-automation-fwk.version}</version>
         </dependency>
     </dependencies>
@@ -119,7 +116,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.ndviet</groupId>
-                                    <artifactId>robot-keywords-configuration</artifactId>
+                                    <artifactId>robot-keywords-utilities</artifactId>
                                     <version>${test-automation-fwk.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -169,14 +166,6 @@
                                 <property>
                                     <name>configuration.ordering1</name>
                                     <value>${configuration.ordering1}</value>
-                                </property>
-                                <property>
-                                    <name>configuration.ordering2</name>
-                                    <value>${configuration.ordering2}</value>
-                                </property>
-                                <property>
-                                    <name>configuration.ordering3</name>
-                                    <value>${configuration.ordering3}</value>
                                 </property>
                                 <property>
                                     <name>testObjectRepository.directory</name>
