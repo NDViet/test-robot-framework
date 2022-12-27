@@ -1,8 +1,8 @@
 *** Settings ***
-Resource    ../libraries/Web.robot
-Resource    ../libraries/Utilities.robot
+Resource          ../libraries/Web.robot
+Resource          ../libraries/Utilities.robot
 
-**** Keywords ***
+*** Keywords ***
 Get Line Chart Details
     [Arguments]    ${keyIndex}=1    ${valueIndex}=3
     Verify Element Present    High Charts.Line Chart Paths
