@@ -2,11 +2,15 @@ Menu:
   Statistics: //*[@class="navbar"]//a[normalize-space()="Statistics"]
 
 Statistics:
+  Progress Page:
+    Title: //progress-page//h1
+    Subtitle: //progress-page//h1/../p
   Tab:
     General: //button[normalize-space()="General"]
     Repayment: //button[normalize-space()="Repayment"]
     Disbursement: //button[normalize-space()="Disbursement"]
   Statistic Detail:
+    Month Box: //*[contains(@class,"monthBox")]
     Label: //*[contains(@class,"detailNumber")]/font
     Value: //*[contains(@class,"detailNumber")]/div
   General:
@@ -14,30 +18,3 @@ Statistics:
       Total approved: //label[normalize-space()="Total approved"]
       Amount disbursed: //label[normalize-space()="Amount disbursed"]
       Default rate: //label[normalize-space()="Default rate"]
-
-High Charts:
-  Tooltips:
-    Text: //*[local-name()='svg' and @class="highcharts-root"]//*[name()='g' and @visibility="visible"]//*[name()="text"]
-    Details: //*[local-name()='svg' and @class="highcharts-root"]//*[name()='g' and @visibility="visible"]//*[name()="text"]//*[name()="tspan" and @style]
-    Detail: (//*[local-name()='svg' and @class="highcharts-root"]//*[name()='g' and @visibility="visible"]//*[name()="text"]//*[name()="tspan" and @style])[${index}]
-
-  Line Chart Paths: //*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-markers") and contains(@class,"highcharts-line-series")]//*[name()='path' and contains(@class,"highcharts-point")]
-  Line Chart Path: (//*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-markers") and contains(@class,"highcharts-line-series")]//*[name()='path' and contains(@class,"highcharts-point")])[${index}]
-
-  Pie Chart Path: (//*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-pie-series")]//*[name()='path' and contains(@class,"highcharts-point")])[${index}]
-  Pie Chart Paths: //*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-pie-series")]//*[name()='path' and contains(@class,"highcharts-point")]
-
-  Bar Chart Paths: //*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-bar-series")]//*[name()='rect' and contains(@class,"highcharts-point")]
-  Bar Chart Path: (//*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-bar-series")]//*[name()='rect' and contains(@class,"highcharts-point")])[${index}]
-
-  Column Chart Paths: //*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-column-series")]//*[name()='rect']
-  Column Chart Path: (//*[local-name()='svg']//*[name()='g' and contains(@class,"highcharts-tracker") and contains(@class,"highcharts-column-series")]//*[name()='rect'])[${index}]
-
-toolTip: g.highcharts-tooltip[visibility="visible"]
-legend: g.highcharts-legend
-CSS Column Chart:
-  Points: g.highcharts-series-group g.highcharts-column-series > rect.highcharts-point
-  Legend:
-    Item: g.highcharts-legend g.highcharts-legend-item
-    Rect: g.highcharts-legend g.highcharts-legend-item rect
-    Text: g.highcharts-legend g.highcharts-legend-item text

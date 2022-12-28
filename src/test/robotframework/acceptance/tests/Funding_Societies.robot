@@ -4,6 +4,16 @@ Test Teardown     Close Browser
 Resource          ../adapters/High_Charts.robot
 
 *** Test Cases ***
+Verify Elements In General tab
+    [Tags]    test11
+    Click    Menu.Statistics
+    Verify Element Text Equals    Statistics.Progress Page.Title    Our Progress
+    Verify Element Text Contains    Statistics.Progress Page.Subtitle    We are in 5 countries, Singapore, Malaysia, Indonesia, Thailand and Vietnam
+    Verify Element Text Contains    Statistics.Progress Page.Subtitle    check our statistics across the region.
+    ${currentMonthYear}    Get Current Date In Format    MMMM yyyy
+    Verify Element Text Contains    Statistics.Statistic Detail.Month Box    Statistics
+    Verify Element Text Contains    Statistics.Statistic Detail.Month Box    ${currentMonthYear}
+
 Verify General Tab > SME Financing Chart
     [Documentation]    @Author: Viet Nguyen
     ...    ---
@@ -37,7 +47,7 @@ Verify General Tab > SME Financing Chart
     ...    	6.3) Disbursement
     ...    7) Verify that General tab is selected by default
     ...    8) Verify the first chart in General with tile is "SME Financing" and subtitle is "Cumulative number of financing approved."
-    [Tags]    test10
+    [Tags]    Statistics
     Click    Menu.Statistics
     Click    Statistics.General.Toggle.Total approved
     ${results}    Get Line Chart Details
@@ -50,14 +60,14 @@ Verify General Tab > SME Financing Chart
     Log    ${results}
 
 Verify Repayment Tab > Repayment Chart
-    [Tags]    test10
+    [Tags]    Statistics
     Click    Menu.Statistics
     Click    Statistics.Tab.Repayment
     ${results}    Get Column Chart Details
     Log    ${results}
 
 Verify Disbursement Tab > Industry Chart
-    [Tags]    test10
+    [Tags]    Statistics
     Click    Menu.Statistics
     Click    Statistics.Tab.Disbursement
     ${results}    Get Pie Chart Details
