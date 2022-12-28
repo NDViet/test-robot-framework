@@ -6,7 +6,7 @@
 
     <groupId>com.ndviet</groupId>
     <artifactId>test-robot-framework</artifactId>
-    <name>Robot Test Automation Repository</name>
+    <name>Robot Framework Test Repository</name>
     <version>${revision}</version>
 
     <properties>
