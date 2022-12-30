@@ -5,3 +5,21 @@ Subtitle:
 Month Box:
   Prefix: "Statistics"
   Date Format: "MMMM yyyy"
+Chart:
+  QuarterFormat: "Q${Quarter}-${Year}"
+  Remove Value Pattern: ':|●|\(|\)'
+  Value Patterns:
+    - '.*●'
+    - '●.*\(|●.*:'
+    - ':.*'
+    - '\(.*\)'
+Progress Statistic:
+  Value Format:
+    Total funded: "${Currency}${Number} ${Place}"
+    Default rate: "${Number}${Place}"
+    Financing fulfilment rate: "${Number}${Place}"
+  Labels:
+    - "Total funded"
+    - "No. of financing"
+    - "Default rate"
+    - "Financing fulfillment rate"

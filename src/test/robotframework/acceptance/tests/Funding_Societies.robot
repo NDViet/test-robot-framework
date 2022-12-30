@@ -2,16 +2,60 @@
 Test Setup        Open Browser    https://fundingsocieties.com
 Test Teardown     Close Browser
 Resource          ../adapters/High_Charts.robot
+Resource          ../adapters/General.robot
+Resource          ../components/Statistics.robot
 
 *** Test Cases ***
-Verify Elements In General tab
+Test Chart
     [Tags]    test11
+    ${DATA}    readYamlConfiguration    ${TEST_DATA_DIR}/Statistics_Detail.yml
+    ${currentMonthYear}    Get Current Date In Format    ${DATA.getValue("Month Box.Date Format")}
+    ${currentQuarterYear}    GetCurrentQuarterYear
+    ${thisQuarterLabel}    Format String Template    ${DATA.getValue("Chart.QuarterFormat")}    &{currentQuarterYear}
+    ${expectListLabels}    Create List    @{DATA.getListValues("Progress Statistic.Labels")}
+    ${chartValuePatterns}    Create List    @{DATA.getListValues("Chart.Value Patterns")}
+    ${chartRemovePattern}    Set Variable    ${DATA.getValue("Chart.Remove Value Pattern")}
     Click    Menu.Statistics
-    Verify Element Text Equals    Statistics.Progress Page.Title    Our Progress
-    Verify Element Text Contains    Statistics.Progress Page.Subtitle    We are in 5 countries, Singapore, Malaysia, Indonesia, Thailand and Vietnam
-    Verify Element Text Contains    Statistics.Progress Page.Subtitle    check our statistics across the region.
-    ${currentMonthYear}    Get Current Date In Format    MMMM yyyy
-    Verify Element Text Contains    Statistics.Statistic Detail.Month Box    Statistics
+    Click    Statistics.General.Toggle.Total approved
+    ${totalApproved}    Get Line Chart Details
+    ${totalApproved}    Extract Chart Details    ${totalApproved}    ${chartValuePatterns}    0    ${chartRemovePattern}
+    ${noOfFinancing}    Get No of Financing    ${totalApproved['${thisQuarterLabel}']}
+    Click    Statistics.General.Toggle.Amount disbursed
+    ${amountDisbursed}    Get Line Chart Details
+    ${amountDisbursed}    Extract Chart Details    ${amountDisbursed}    ${chartValuePatterns}    0    ${chartRemovePattern}
+    ${totalFundedValue}    Get Total Funded    ${amountDisbursed['${thisQuarterLabel}']}    ${DATA.getValue("Progress Statistic.Value Format.Total funded")}
+    Click    Statistics.General.Toggle.Default rate
+    ${defaultRate}    Get Line Chart Details
+    ${defaultRate}    Extract Chart Details    ${defaultRate}    ${chartValuePatterns}    0    ${chartRemovePattern}
+    ${defaultRateValue}    Get Default Rate    ${defaultRate['${thisQuarterLabel}']}    ${DATA.getValue("Progress Statistic.Value Format.Default rate")}
+    Click    Statistics.Tab.Repayment
+    ${repayment}    Get Column Chart Details
+    ${repayment}    Extract Chart Details    ${repayment}    ${chartValuePatterns}    1    ${chartRemovePattern}
+    Click    Statistics.Tab.Disbursement
+    ${disbursement}    Get Pie Chart Details
+    ${disbursement}    Extract Chart Details    ${disbursement}    ${chartValuePatterns}    0    ${chartRemovePattern}
+    ${disbursementPercentage}    Get Disbursement Percentage By Industry    ${disbursement}
+    ${disbursementPercentageAscending}    Sort By Values    ${disbursementPercentage}    ${False}
+    ${sumOfDisbursement}    Get Sum of Disbursement Percentage    ${disbursementPercentageAscending}
+
+Verify Elements In General tab
+    [Tags]    test10
+    ${DATA}    readYamlConfiguration    ${TEST_DATA_DIR}/Statistics_Detail.yml
+    ${currentMonthYear}    Get Current Date In Format    ${DATA.getValue("Month Box.Date Format")}
+    ${currentQuarterYear}    GetCurrentQuarterYear
+    ${thisQuarterLabel}    Format String Template    ${DATA.getValue("Chart.QuarterFormat")}    &{currentQuarterYear}
+    ${expectListLabels}    Create List    @{DATA.getListValues("Progress Statistic.Labels")}
+    ${chartValuePatterns}    Create List    @{DATA.getListValues("Chart.Value Patterns")}
+    ${chartRemovePattern}    Set Variable    ${DATA.getValue("Chart.Remove Value Pattern")}
+    Click    Menu.Statistics
+    Verify Element Text Equals    Statistics.Progress Page.Title    ${DATA.getValue("Title")}
+    FOR    ${text}    IN    @{DATA.getListValues("Subtitle")}
+        Verify Element Text Contains    Statistics.Progress Page.Subtitle    ${text}
+    END
+    ${actualListLabels}    Get Texts    Statistics.Statistic Detail.Label
+    ${actualListLabels}    Replace In List String    ${actualListLabels}
+    Should Be Equal    ${actualListLabels}    ${expectListLabels}
+    Verify Element Text Contains    Statistics.Statistic Detail.Month Box    ${DATA.getValue("Month Box.Prefix")}
     Verify Element Text Contains    Statistics.Statistic Detail.Month Box    ${currentMonthYear}
 
 Verify General Tab > SME Financing Chart

@@ -11,8 +11,8 @@ Statistics:
     Disbursement: //button[normalize-space()="Disbursement"]
   Statistic Detail:
     Month Box: //*[contains(@class,"monthBox")]
-    Label: //*[contains(@class,"detailNumber")]/font
-    Value: //*[contains(@class,"detailNumber")]/div
+    Value: //*[contains(@class,"detailNumber")]/font
+    Label: //*[contains(@class,"detailNumber")]/div
   General:
     Toggle:
       Total approved: //label[normalize-space()="Total approved"]
