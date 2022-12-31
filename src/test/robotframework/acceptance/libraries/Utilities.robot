@@ -5,3 +5,4 @@ Library           com.ndviet.keyword.DateTimeUtils    WITH NAME    DateTimeUtils
 Library           com.ndviet.keyword.TemplateUtils    WITH NAME    TemplateUtils
 Library           com.ndviet.keyword.StringUtils    WITH NAME    StringUtils
 Library           com.ndviet.keyword.GeneralUtils    WITH NAME    GeneralUtils
+Library           com.ndviet.keyword.MathUtils    WITH NAME    MathUtils

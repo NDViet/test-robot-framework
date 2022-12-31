@@ -10,7 +10,8 @@ Get Total Funded
     ${components}    getListStringMatchesRegex    ${listValues}[3]    \\w+
     ${numberPlace}    Set Variable    ${components}[0]
     ${currencyString}    Set Variable    ${convertMap.getValue("Currency.${components}[1]")}
-    &{variables}    Create Dictionary    Currency=${currencyString}    Number=${listValues}[2]    Place=${numberPlace}
+    ${number}    Number Decimal Format    ${listValues}[2]    \#.00    ${None}
+    &{variables}    Create Dictionary    Currency=${currencyString}    Number=${number}    Place=${numberPlace}
     ${TotalFunded}    Format String Template    ${stringFormat}    &{variables}
     [Return]    ${TotalFunded}
 
@@ -22,9 +23,17 @@ Get No of Financing
 Get Default Rate
     [Arguments]    ${listValues}    ${stringFormat}
     Log    ${listValues}
-    &{variables}    Create Dictionary    Number=${listValues}[2]    Place=${listValues}[3]
+    ${number}    Number Decimal Format    ${listValues}[2]    \#.00    ${None}
+    &{variables}    Create Dictionary    Number=${number}    Place=${listValues}[3]
     ${DefaultRate}    Format String Template    ${stringFormat}    &{variables}
     [Return]    ${DefaultRate}
+
+Get Financing Fulfillment Rate
+    [Arguments]    ${value}    ${stringFormat}
+    ${number}    Number Decimal Format    ${value}    \#    ${None}
+    &{variables}    Create Dictionary    Number=${number}    Place=%
+    ${rate}    Format String Template    ${stringFormat}    &{variables}
+    [Return]    ${rate}
 
 Get Disbursement Percentage By Industry
     [Arguments]    ${listValues}    ${valueIndex}=2
