@@ -1,4 +1,7 @@
 selenium:
+  screenshot:
+    fileType: "png"
+  enableTracing: false
   default:
     timeOut: 15
   hub:

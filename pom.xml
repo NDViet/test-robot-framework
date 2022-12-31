@@ -34,7 +34,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <log4j.configuration>${project.basedir}/src/log4j.properties</log4j.configuration>
+        <log4j2.configurationFile>file:///${basedir}/src/test/resources/log4j2.properties</log4j2.configurationFile>
     </properties>
 
     <dependencies>
@@ -179,8 +179,8 @@
                                     <value>${testObjectRepository.webIdentifiers}</value>
                                 </property>
                                 <property>
-                                    <name>log4j.configuration</name>
-                                    <value>${log4j.configuration}</value>
+                                    <name>log4j2.configurationFile</name>
+                                    <value>${log4j2.configurationFile}</value>
                                 </property>
                                 <property>
                                     <name>applicationContextPath</name>

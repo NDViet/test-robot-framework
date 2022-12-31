@@ -11,8 +11,12 @@ Statistics:
     Disbursement: //button[normalize-space()="Disbursement"]
   Statistic Detail:
     Month Box: //*[contains(@class,"monthBox")]
-    Value: //*[contains(@class,"detailNumber")]/font
     Label: //*[contains(@class,"detailNumber")]/div
+    Value:
+      Total funded: (//*[contains(@class,"detailNumber")]/font)[1]
+      No of financing: (//*[contains(@class,"detailNumber")]/font)[2]
+      Default rate: (//*[contains(@class,"detailNumber")]/font)[3]
+      Financing fulfillment rate: (//*[contains(@class,"detailNumber")]/font)[4]
   General:
     Toggle:
       Total approved: //label[normalize-space()="Total approved"]
