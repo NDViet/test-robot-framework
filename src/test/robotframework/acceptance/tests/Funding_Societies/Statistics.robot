@@ -55,7 +55,7 @@ Verify Statistics Details In Current Quarter
     END
     ${actualListLabels}    Get Texts    Statistics.Statistic Detail.Label
     ${actualListLabels}    Replace In List String    ${actualListLabels}
-    Should Be Equal    ${actualListLabels}    ${expectListLabels}
+    Should Be Equal    ${actualListLabels}    ${expectListLabels}    Expect all these labels should present in Statistic detail row
     Verify Element Text Contains    Statistics.Statistic Detail.Month Box    ${DATA.getValue("Month Box.Prefix")}
     Verify Element Text Contains    Statistics.Statistic Detail.Month Box    ${currentMonthYear}
     Capture Page Screenshot    ${TEST NAME}
@@ -63,25 +63,31 @@ Verify Statistics Details In Current Quarter
     ${totalApproved}    Get Line Chart Details
     ${totalApproved}    Extract Chart Details    ${totalApproved}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${totalApproved}    Sort By Keys    ${totalApproved}    ${False}
+    ${totalApproved}    Sort By Keys    ${totalApproved}    ${True}
     Pretty Print Object Details    ${totalApproved}
-    ${noOfFinancing}    Get No of Financing    ${totalApproved['${thisQuarterLabel}']}
+    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
+    ${noOfFinancing}    Get No of Financing    ${totalApproved['${latestDatePoint}']}
     Verify Element Text Equals    Statistics.Statistic Detail.Value.No of financing    ${noOfFinancing}
     Click    Statistics.General.Toggle.Amount disbursed
     ${amountDisbursed}    Get Line Chart Details
     ${amountDisbursed}    Extract Chart Details    ${amountDisbursed}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${amountDisbursed}    Sort By Keys    ${amountDisbursed}    ${False}
+    ${amountDisbursed}    Sort By Keys    ${amountDisbursed}    ${True}
     Pretty Print Object Details    ${amountDisbursed}
-    ${totalFundedValue}    Get Total Funded    ${amountDisbursed['${thisQuarterLabel}']}    ${DATA.getValue("Progress Statistic.Value Format.Total funded")}
+    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
+    ${totalFundedValue}    Get Total Funded    ${amountDisbursed['${latestDatePoint}']}    ${DATA.getValue("Progress Statistic.Value Format.Total funded")}
     Run Keyword And Continue On Failure    Verify Element Text Equals    Statistics.Statistic Detail.Value.Total funded    ${totalFundedValue}
     Click    Statistics.General.Toggle.Default rate
     ${defaultRate}    Get Line Chart Details
     ${defaultRate}    Extract Chart Details    ${defaultRate}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${defaultRate}    Sort By Keys    ${defaultRate}    ${False}
+    ${defaultRate}    Sort By Keys    ${defaultRate}    ${True}
     Pretty Print Object Details    ${defaultRate}
-    ${defaultRateValue}    Get Default Rate    ${defaultRate['${thisQuarterLabel}']}    ${DATA.getValue("Progress Statistic.Value Format.Default rate")}
+    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
+    ${defaultRateValue}    Get Default Rate    ${defaultRate['${latestDatePoint}']}    ${DATA.getValue("Progress Statistic.Value Format.Default rate")}
     Verify Element Text Equals    Statistics.Statistic Detail.Value.Default rate    ${defaultRateValue}
     Click    Statistics.Tab.Repayment
     ${repayment}    Get Column Chart Details
