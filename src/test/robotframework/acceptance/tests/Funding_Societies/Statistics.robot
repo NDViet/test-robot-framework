@@ -53,6 +53,7 @@ Verify Statistics Details In Current Quarter
     FOR    ${text}    IN    @{DATA.getListValues("Subtitle")}
         Verify Element Text Contains    Statistics.Progress Page.Subtitle    ${text}
     END
+    Verify Element Visible    Statistics.Statistic Detail.Label
     ${actualListLabels}    Get Texts    Statistics.Statistic Detail.Label
     ${actualListLabels}    Replace In List String    ${actualListLabels}
     Should Be Equal    ${actualListLabels}    ${expectListLabels}    Expect all these labels should present in Statistic detail row
