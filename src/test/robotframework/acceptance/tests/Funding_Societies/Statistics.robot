@@ -69,7 +69,7 @@ Verify Statistics Details In Current Quarter
     ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${noOfFinancing}    Get No of Financing    ${totalApproved['${latestDatePoint}']}
-    Verify Element Text Equals    Statistics.Statistic Detail.Value.No of financing    ${noOfFinancing}
+    Run Keyword And Continue On Failure    Verify Element Text Equals    Statistics.Statistic Detail.Value.No of financing    ${noOfFinancing}
     Click    Statistics.General.Toggle.Amount disbursed
     ${amountDisbursed}    Get Line Chart Details
     ${amountDisbursed}    Extract Chart Details    ${amountDisbursed}    ${chartValuePatterns}    0    ${chartRemovePattern}
