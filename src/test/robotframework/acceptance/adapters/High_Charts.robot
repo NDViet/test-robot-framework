@@ -22,6 +22,14 @@ Extract Chart Details
     Log    ${dictionary}
     [Return]    ${dictionary}
 
+Get List Chart Values
+    [Arguments]    ${chartDetails}    ${valueIndex}=2
+    ${listValues}    Create List
+    FOR    ${key}    IN    @{chartDetails.keys()}
+        ${listValues}    Create List    @{listValues}    ${chartDetails['${key}']}[${valueIndex}]
+    END
+    [Return]    ${listValues}
+
 Get Line Chart Details
     [Arguments]    ${keyIndex}=1    ${valueIndex}=3
     Verify Element Present    High Charts.Line Chart Paths

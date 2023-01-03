@@ -10,7 +10,7 @@ Get Total Funded
     ${components}    getListStringMatchesRegex    ${listValues}[3]    \\w+
     ${numberPlace}    Set Variable    ${components}[0]
     ${currencyString}    Set Variable    ${convertMap.getValue("Currency.${components}[1]")}
-    ${number}    Number Decimal Format    ${listValues}[2]    \#.00    ${None}
+    ${number}    Number Decimal Format    ${listValues}[2]    \#0.00    ${None}
     &{variables}    Create Dictionary    Currency=${currencyString}    Number=${number}    Place=${numberPlace}
     ${TotalFunded}    Format String Template    ${stringFormat}    &{variables}
     [Return]    ${TotalFunded}
@@ -23,7 +23,7 @@ Get No of Financing
 Get Default Rate
     [Arguments]    ${listValues}    ${stringFormat}
     Log    ${listValues}
-    ${number}    Number Decimal Format    ${listValues}[2]    \#.00    ${None}
+    ${number}    Number Decimal Format    ${listValues}[2]    \#0.00    ${None}
     &{variables}    Create Dictionary    Number=${number}    Place=${listValues}[3]
     ${DefaultRate}    Format String Template    ${stringFormat}    &{variables}
     [Return]    ${DefaultRate}
