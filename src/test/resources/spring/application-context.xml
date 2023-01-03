@@ -1,7 +1,7 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="ConfigurationFactory" class="com.ndviet.libary.configuration.ConfigurationFactory"
+    <bean id="ConfigurationFactory" class="com.ndviet.library.configuration.ConfigurationFactory"
           factory-method="getInstance"/>
-    <bean id="WebElementIdentifier" class="com.ndviet.libary.TestObject.WebElementIdentifier"
+    <bean id="WebElementIdentifier" class="com.ndviet.library.TestObject.WebElementIdentifier"
           factory-method="getInstance"/>
 </beans>

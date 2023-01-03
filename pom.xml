@@ -145,7 +145,8 @@
                         <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
                     </listeners>
                     <variables>
-                        <variable>TEST_DATA_DIR:${project.basedir}/src/test/resources/Object_Repository/Test_Data</variable>
+                        <variable>TEST_DATA_DIR:${project.basedir}/src/test/resources/Object_Repository/Test_Data
+                        </variable>
                     </variables>
                 </configuration>
             </plugin>
