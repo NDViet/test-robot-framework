@@ -3,10 +3,10 @@ Menu:
 
 Statistics:
   Progress Page:
-    Title: //progress-page//h1
-    Subtitle: //progress-page//h1/../p
+    Title: xpath=//progress-page//h1
+    Subtitle: xpath=//progress-page//h1/../p
   Tab:
-    General: //button[normalize-space()="General"]
+    General: xpath=//button[normalize-space()="General"]
     Repayment: //button[normalize-space()="Repayment"]
     Disbursement: //button[normalize-space()="Disbursement"]
   Statistic Detail:

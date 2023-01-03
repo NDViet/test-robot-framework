@@ -67,7 +67,7 @@ Verify Statistics Details In Current Quarter
     Pretty Print Object Details    ${totalApproved}
     ${numberOfTotalApproved}    Get List Chart Values     ${totalApproved}
     ${isIncreased}    ListUtils.Is Sorted    ${numberOfTotalApproved}    ${False}
-    Run Keyword And Continue On Failure    Should Be True    ${isIncreased}    Total approved of the current Quarter should be greater or equal to the previous Quarter
+    Run Keyword And Continue On Failure    Should Be True    ${isIncreased}    Total approved of the current Quarter should be greater than or equal to the previous Quarter
     ${latestDatePoint}    Get Last Element    ${totalApproved.keys()}
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${noOfFinancing}    Get No of Financing    ${totalApproved['${latestDatePoint}']}
@@ -79,7 +79,7 @@ Verify Statistics Details In Current Quarter
     Pretty Print Object Details    ${amountDisbursed}
     ${numberOfAmountDisbursed}    Get List Chart Values     ${amountDisbursed}
     ${isIncreased}    ListUtils.Is Sorted    ${numberOfAmountDisbursed}    ${False}
-    Run Keyword And Continue On Failure    Should Be True    ${isIncreased}    Amount Disbursed of the current Quarter should be greater or equal to the previous Quarter
+    Run Keyword And Continue On Failure    Should Be True    ${isIncreased}    Amount Disbursed of the current Quarter should be greater than or equal to the previous Quarter
     ${latestDatePoint}    Get Last Element    ${amountDisbursed.keys()}
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${totalFundedValue}    Get Total Funded    ${amountDisbursed['${latestDatePoint}']}    ${DATA.getValue("Progress Statistic.Value Format.Total funded")}

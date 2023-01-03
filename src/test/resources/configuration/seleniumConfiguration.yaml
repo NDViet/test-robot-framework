@@ -12,8 +12,8 @@ selenium:
       args:
         - "start-maximized"
         - "--incognito"
-        - "high-dpi-support=0.8"
-        - "force-device-scale-factor=0.8"
+        #- "high-dpi-support=0.8"
+        #- "force-device-scale-factor=0.8"
         - "--disable-extensions"
         - "--disable-popup-blocking"
         - "enable-automation"
