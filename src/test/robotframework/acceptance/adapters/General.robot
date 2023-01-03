@@ -22,3 +22,10 @@ Replace In List String
         ${returnList}    Create List    @{returnList}    ${string}
     END
     [Return]    ${returnList}
+
+Get The Last Key In Dictionary
+    [Arguments]    ${dict}
+    ${listKeys}    Create List    @{dict.keys()}
+    ${size}    Get Length    ${listKeys}
+    ${lastIndex}    Evaluate    ${size} - 1
+    [Return]    ${listKeys}[${lastIndex}]

@@ -64,9 +64,8 @@ Verify Statistics Details In Current Quarter
     ${totalApproved}    Get Line Chart Details
     ${totalApproved}    Extract Chart Details    ${totalApproved}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${totalApproved}    Sort By Keys    ${totalApproved}    ${True}
     Pretty Print Object Details    ${totalApproved}
-    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    ${latestDatePoint}    Get The Last Key In Dictionary    ${totalApproved}
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${noOfFinancing}    Get No of Financing    ${totalApproved['${latestDatePoint}']}
     Run Keyword And Continue On Failure    Verify Element Text Equals    Statistics.Statistic Detail.Value.No of financing    ${noOfFinancing}
@@ -74,9 +73,8 @@ Verify Statistics Details In Current Quarter
     ${amountDisbursed}    Get Line Chart Details
     ${amountDisbursed}    Extract Chart Details    ${amountDisbursed}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${amountDisbursed}    Sort By Keys    ${amountDisbursed}    ${True}
     Pretty Print Object Details    ${amountDisbursed}
-    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    ${latestDatePoint}    Get The Last Key In Dictionary    ${amountDisbursed}
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${totalFundedValue}    Get Total Funded    ${amountDisbursed['${latestDatePoint}']}    ${DATA.getValue("Progress Statistic.Value Format.Total funded")}
     Run Keyword And Continue On Failure    Verify Element Text Equals    Statistics.Statistic Detail.Value.Total funded    ${totalFundedValue}
@@ -84,9 +82,8 @@ Verify Statistics Details In Current Quarter
     ${defaultRate}    Get Line Chart Details
     ${defaultRate}    Extract Chart Details    ${defaultRate}    ${chartValuePatterns}    0    ${chartRemovePattern}
     Capture Page Screenshot    ${TEST NAME}
-    ${defaultRate}    Sort By Keys    ${defaultRate}    ${True}
     Pretty Print Object Details    ${defaultRate}
-    ${latestDatePoint}    Set Variable    ${totalApproved.keys()}[0]
+    ${latestDatePoint}    Get The Last Key In Dictionary    ${defaultRate}
     Run Keyword And Continue On Failure    Should Be Equal    ${latestDatePoint}    ${thisQuarterLabel}    Expect the Date in latest point should match with current date
     ${defaultRateValue}    Get Default Rate    ${defaultRate['${latestDatePoint}']}    ${DATA.getValue("Progress Statistic.Value Format.Default rate")}
     Verify Element Text Equals    Statistics.Statistic Detail.Value.Default rate    ${defaultRateValue}
