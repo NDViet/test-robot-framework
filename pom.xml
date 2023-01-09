@@ -14,7 +14,8 @@
         <!-- Properties for upstream test-fwk -->
         <test-automation-fwk.version>1.0.0-SNAPSHOT</test-automation-fwk.version>
         <!-- Properties for Robot Framework configuration -->
-        <outputDirectory>${project.build.directory}/reports</outputDirectory>
+        <outputDirectory>${project.build.directory}/reports/${custom.timestamp}</outputDirectory>
+        <screenshotsDirectory>${outputDirectory}/Screenshots</screenshotsDirectory>
         <libsDirectory>${project.build.directory}/libs</libsDirectory>
         <jarsDirectory>${project.build.directory}/jars</jarsDirectory>
         <!-- Properties for Test Configuration files (precedence level: system props -> ordering<N> -> base) -->
@@ -31,6 +32,7 @@
         <flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
         <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
+        <gmaven-plugin.version>1.3</gmaven-plugin.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,6 +85,27 @@
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>${gmaven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>set-timestamp-property</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                def timestamp = new Date().format('yyyyMMDD_HHmmssSSS')
+                                project.properties.setProperty('custom.timestamp', timestamp)
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven-dependency-plugin.version}</version>
@@ -130,34 +153,13 @@
             </plugin>
 
             <plugin>
-                <groupId>org.robotframework</groupId>
-                <artifactId>robotframework-maven-plugin</artifactId>
-                <version>${robotframework-maven-plugin.version}</version>
-                <configuration>
-                    <libdoc/>
-                    <testdoc/>
-                    <outputDirectory>${outputDirectory}</outputDirectory>
-                    <extraPathDirectories>
-                        <extraPathDirectory>${libsDirectory}</extraPathDirectory>
-                        <extraPathDirectory>${jarsDirectory}</extraPathDirectory>
-                    </extraPathDirectories>
-                    <listeners>
-                        <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
-                    </listeners>
-                    <variables>
-                        <variable>TEST_DATA_DIR:${project.basedir}/src/test/resources/Object_Repository/Test_Data
-                        </variable>
-                    </variables>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
                 <version>${properties-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>set-configuration-base</id>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>set-system-properties</goal>
                         </goals>
@@ -184,13 +186,43 @@
                                     <value>${log4j2.configurationFile}</value>
                                 </property>
                                 <property>
+                                    <name>log4j2.path</name>
+                                    <value>${outputDirectory}</value>
+                                </property>
+                                <property>
                                     <name>applicationContextPath</name>
                                     <value>/spring/application-context.xml</value>
+                                </property>
+                                <property>
+                                    <name>selenium.screenshot.directory</name>
+                                    <value>${screenshotsDirectory}</value>
                                 </property>
                             </properties>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.robotframework</groupId>
+                <artifactId>robotframework-maven-plugin</artifactId>
+                <version>${robotframework-maven-plugin.version}</version>
+                <configuration>
+                    <libdoc/>
+                    <testdoc/>
+                    <outputDirectory>${outputDirectory}</outputDirectory>
+                    <extraPathDirectories>
+                        <extraPathDirectory>${libsDirectory}</extraPathDirectory>
+                        <extraPathDirectory>${jarsDirectory}</extraPathDirectory>
+                    </extraPathDirectories>
+                    <listeners>
+                        <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
+                    </listeners>
+                    <variables>
+                        <variable>TEST_DATA_DIR:${project.basedir}/src/test/resources/Object_Repository/Test_Data
+                        </variable>
+                    </variables>
+                </configuration>
             </plugin>
 
         </plugins>
