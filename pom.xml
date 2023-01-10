@@ -4,15 +4,46 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ndviet</groupId>
+    <parent>
+        <groupId>io.github.ndviet</groupId>
+        <artifactId>test-parent-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../test-parent-pom/pom.xml</relativePath>
+    </parent>
+
     <artifactId>test-robot-framework</artifactId>
     <name>Robot Framework Test Repository</name>
     <version>${revision}</version>
+    <description>Test repository with test case is created and executed in Robot Framework.</description>
+    <url>https://github.com/${github.organization}/${project.artifactId}/tree/master</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>${github.id}</id>
+            <name>${github.name}</name>
+            <email>${github.email}</email>
+            <roles>
+                <role>maintainer</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:${github.organization}/${project.artifactId}.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:${github.organization}/${project.artifactId}.git
+        </developerConnection>
+        <url>https://github.com/${github.organization}/${project.artifactId}/tree/master</url>
+    </scm>
 
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-        <!-- Properties for upstream test-fwk -->
-        <test-automation-fwk.version>1.0.0-SNAPSHOT</test-automation-fwk.version>
         <!-- Properties for Robot Framework configuration -->
         <!--suppress UnresolvedMavenProperty - Property 'custom.timestamp' is created when initializing-->
         <outputDirectory>${project.build.directory}/reports/${custom.timestamp}</outputDirectory>
@@ -27,16 +58,6 @@
         <testObjectRepository.directory>${project.basedir}/src/test/resources/Object_Repository
         </testObjectRepository.directory>
         <testObjectRepository.webIdentifiers>Web_Identifiers</testObjectRepository.webIdentifiers>
-        <!-- Properties for dependencies version -->
-        <robotframework.version>4.1.2</robotframework.version>
-        <robotframework-maven-plugin.version>2.1.0</robotframework-maven-plugin.version>
-        <flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
-        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
-        <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
-        <gmaven-plugin.version>1.3</gmaven-plugin.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <log4j2.configurationFile>file:///${basedir}/src/test/resources/log4j2.properties</log4j2.configurationFile>
     </properties>
 
@@ -44,17 +65,16 @@
         <dependency>
             <groupId>org.robotframework</groupId>
             <artifactId>robotframework</artifactId>
-            <version>${robotframework.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.ndviet</groupId>
+            <groupId>io.github.ndviet</groupId>
             <artifactId>robot-keywords-webui</artifactId>
-            <version>${test-automation-fwk.version}</version>
+            <version>${test-java2robot-adapter.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.ndviet</groupId>
+            <groupId>io.github.ndviet</groupId>
             <artifactId>robot-keywords-utilities</artifactId>
-            <version>${test-automation-fwk.version}</version>
+            <version>${test-java2robot-adapter.version}</version>
         </dependency>
     </dependencies>
 
@@ -63,53 +83,14 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>${flatten-maven-plugin.version}</version>
-                <configuration>
-                    <updatePomFile>true</updatePomFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>flatten</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>flatten.clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.gmaven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
-                <version>${gmaven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>set-timestamp-property</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                def timestamp = new Date().format('yyyyMMDD_HHmmssSSS')
-                                project.properties.setProperty('custom.timestamp', timestamp)
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven-dependency-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-lib-dependencies</id>
@@ -130,18 +111,18 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>com.ndviet</groupId>
+                                    <groupId>io.github.ndviet</groupId>
                                     <artifactId>robot-keywords-webui</artifactId>
-                                    <version>${test-automation-fwk.version}</version>
+                                    <version>${test-java2robot-adapter.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/libs</outputDirectory>
                                     <includes>**/*.jar,**/*.xml,**/*.class,**/*.properties</includes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>com.ndviet</groupId>
+                                    <groupId>io.github.ndviet</groupId>
                                     <artifactId>robot-keywords-utilities</artifactId>
-                                    <version>${test-automation-fwk.version}</version>
+                                    <version>${test-java2robot-adapter.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/libs</outputDirectory>
@@ -156,7 +137,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-                <version>${properties-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>set-configuration-base</id>
@@ -207,7 +187,6 @@
             <plugin>
                 <groupId>org.robotframework</groupId>
                 <artifactId>robotframework-maven-plugin</artifactId>
-                <version>${robotframework-maven-plugin.version}</version>
                 <configuration>
                     <libdoc/>
                     <testdoc/>
@@ -229,4 +208,43 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
