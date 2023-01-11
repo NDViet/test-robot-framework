@@ -15,7 +15,7 @@
     <name>Robot Framework Test Repository</name>
     <version>${revision}</version>
     <description>Test repository with test case is created and executed in Robot Framework.</description>
-    <url>https://${github.url}/${github.organization}/${project.artifactId}/tree/${github.branch}</url>
+    <url>https://${github.url}/${github.organization}/${github.repository}/tree/${github.branch}</url>
 
     <licenses>
         <license>
@@ -37,13 +37,14 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@${github.url}:${github.organization}/${project.artifactId}.git</connection>
-        <developerConnection>scm:git:ssh://git@${github.url}:${github.organization}/${project.artifactId}.git
+        <connection>scm:git:git@${github.url}:${github.organization}/${github.repository}.git</connection>
+        <developerConnection>scm:git:ssh://git@${github.url}:${github.organization}/${github.repository}.git
         </developerConnection>
-        <url>https://${github.url}/${github.organization}/${project.artifactId}/tree/${github.branch}</url>
+        <url>https://${github.url}/${github.organization}/${github.repository}/tree/${github.branch}</url>
     </scm>
 
     <properties>
+        <github.repository>test-robot-framework</github.repository>
         <!-- Properties for Robot Framework configuration -->
         <!--suppress UnresolvedMavenProperty - Property 'custom.timestamp' is created when initializing-->
         <outputDirectory>${project.build.directory}/reports/${custom.timestamp}</outputDirectory>
