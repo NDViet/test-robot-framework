@@ -1,4 +1,6 @@
 selenium:
+  web_driver:
+    type: local
   screenshot:
     fileType: "png"
   enableTracing: false
@@ -12,11 +14,12 @@ selenium:
       args:
         - "start-maximized"
         - "--incognito"
-        #- "high-dpi-support=0.8"
-        #- "force-device-scale-factor=0.8"
+        - "high-dpi-support=0.8"
+        - "force-device-scale-factor=0.8"
         - "--disable-extensions"
         - "--disable-popup-blocking"
         - "enable-automation"
+        - "--verbose"
         #- "--proxy-server=10.10.10.10:8080"
     firefox:
       args:
