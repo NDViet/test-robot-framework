@@ -1,0 +1,12 @@
+Easy Upload:
+  Upload:
+    Drop Zone: //*[@id="dropzone"]
+    File: //input[@type="file"]
+    Submit Button: //button[@id="upload"]
+    Settings:
+      Expiration Dropdown: //button[@data-id="expiration"]/..//i
+      Option: //a[@role="option" and normalize-space()="${value}"]
+      Password: //input[@name="password"]
+    Link: //*[@id="upload-link"]
+    Copy Link To Clipboard: //img[@title="Upload File"]
+    QR Code: //*[@id="qrcode"]//img
