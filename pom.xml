@@ -46,22 +46,24 @@
     <properties>
         <github.repository>test-robot-framework</github.repository>
         <!-- Properties for Robot Framework configuration -->
-        <!--suppress UnresolvedMavenProperty - Property 'custom.timestamp' is created when initializing-->
-        <outputDirectory>${project.build.directory}/reports/${custom.timestamp}</outputDirectory>
-        <screenshotsDirectory>${outputDirectory}/Screenshots</screenshotsDirectory>
         <libsDirectory>${project.build.directory}/libs</libsDirectory>
         <jarsDirectory>${project.build.directory}/jars</jarsDirectory>
+        <!--suppress UnresolvedMavenProperty - Property 'custom.timestamp' is created when initializing-->
+        <outputDirectory>${project.build.directory}/reports/${custom.timestamp}</outputDirectory>
+        <selenium.screenshot.directory>${outputDirectory}/Screenshots</selenium.screenshot.directory>
         <!-- Properties for Test Configuration files (precedence level: system props -> ordering<N> -> base) -->
-        <configuration.base>${project.basedir}/src/test/resources/configuration/baseConfiguration.yaml
-        </configuration.base>
-        <configuration.ordering1>${project.basedir}/src/test/resources/configuration/seleniumConfiguration.yaml
-        </configuration.ordering1>
-        <configuration.ordering2>${project.basedir}/src/test/resources/configuration/input_java_opts.properties
-        </configuration.ordering2>
+        <configuration.directory>${project.basedir}/src/test/resources/configuration</configuration.directory>
+        <configuration.base>${configuration.directory}/baseConfiguration.yaml</configuration.base>
+        <configuration.ordering1>${configuration.directory}/seleniumConfiguration.yaml</configuration.ordering1>
+        <configuration.ordering2>${configuration.directory}/input_java_opts.properties</configuration.ordering2>
         <testObjectRepository.directory>${project.basedir}/src/test/resources/Object_Repository
         </testObjectRepository.directory>
-        <testObjectRepository.webIdentifiers>Web_Identifiers</testObjectRepository.webIdentifiers>
+        <webElementIdentifiers.directory>${testObjectRepository.directory}/Web_Identifiers
+        </webElementIdentifiers.directory>
+        <testData.directory>${testObjectRepository.directory}/Test_Data</testData.directory>
         <log4j2.configurationFile>file:///${basedir}/src/test/resources/log4j2.properties</log4j2.configurationFile>
+        <log4j2.path>${outputDirectory}</log4j2.path>
+        <applicationContextPath>spring/application-context.xml</applicationContextPath>
     </properties>
 
     <dependencies>
@@ -162,8 +164,8 @@
                                     <value>${testObjectRepository.directory}</value>
                                 </property>
                                 <property>
-                                    <name>testObjectRepository.webIdentifiers</name>
-                                    <value>${testObjectRepository.webIdentifiers}</value>
+                                    <name>webElementIdentifiers.directory</name>
+                                    <value>${webElementIdentifiers.directory}</value>
                                 </property>
                                 <property>
                                     <name>log4j2.configurationFile</name>
@@ -171,15 +173,15 @@
                                 </property>
                                 <property>
                                     <name>log4j2.path</name>
-                                    <value>${outputDirectory}</value>
+                                    <value>${log4j2.path}</value>
                                 </property>
                                 <property>
                                     <name>applicationContextPath</name>
-                                    <value>/spring/application-context.xml</value>
+                                    <value>${applicationContextPath}</value>
                                 </property>
                                 <property>
                                     <name>selenium.screenshot.directory</name>
-                                    <value>${screenshotsDirectory}</value>
+                                    <value>${selenium.screenshot.directory}</value>
                                 </property>
                             </properties>
                         </configuration>
@@ -202,8 +204,7 @@
                         <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
                     </listeners>
                     <variables>
-                        <variable>TEST_DATA_DIR:${project.basedir}/src/test/resources/Object_Repository/Test_Data
-                        </variable>
+                        <variable>testData.directory:${testData.directory}</variable>
                     </variables>
                 </configuration>
             </plugin>

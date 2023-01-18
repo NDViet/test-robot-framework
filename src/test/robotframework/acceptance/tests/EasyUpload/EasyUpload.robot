@@ -11,7 +11,7 @@ Perform To Upload File
     ...    This test is used to perform upload a file to https://easyupload.io/
     Verify Element Visible    Easy Upload.Upload.Drop Zone
     Capture Page Screenshot    ${TEST NAME}
-    Upload File    Easy Upload.Upload.File    ${TEST_DATA_DIR}/Amount_convert.yml
+    Upload File    Easy Upload.Upload.File    ${testData.directory}/Amount_convert.yml
     Click    Easy Upload.Upload.Settings.Expiration Dropdown
     &{variables}    Create Dictionary    value=1 days
     Click    Easy Upload.Upload.Settings.Option    ${variables}

@@ -41,7 +41,7 @@ Verify Statistics Details In Current Quarter
     ...    7) Verify that General tab is selected by default
     ...    8) Verify the first chart in General with tile is "SME Financing" and subtitle is "Cumulative number of financing approved."
     [Tags]    test11
-    ${DATA}    Read Yaml Configuration    ${TEST_DATA_DIR}/Statistics_Detail.yml
+    ${DATA}    Read Yaml Configuration    ${testData.directory}/Statistics_Detail.yml
     ${currentMonthYear}    Get Current Date In Format    ${DATA.getValue("Month Box.Date Format")}
     ${currentQuarterYear}    Get Current Quarter Year
     ${thisQuarterLabel}    Format String Template    ${DATA.getValue("Chart.QuarterFormat")}    &{currentQuarterYear}

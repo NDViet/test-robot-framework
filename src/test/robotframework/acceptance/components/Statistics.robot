@@ -6,7 +6,7 @@ Resource          ../libraries/Utilities.robot
 Get Total Funded
     [Arguments]    ${listValues}    ${stringFormat}
     Log    ${listValues}
-    ${convertMap}    readYamlConfiguration    ${TEST_DATA_DIR}/Amount_convert.yml
+    ${convertMap}    readYamlConfiguration    ${testData.directory}/Amount_convert.yml
     ${components}    getListStringMatchesRegex    ${listValues}[3]    \\w+
     ${numberPlace}    Set Variable    ${components}[0]
     ${currencyString}    Set Variable    ${convertMap.getValue("Currency.${components}[1]")}
