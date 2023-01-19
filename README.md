@@ -24,12 +24,12 @@ git clone git@github.com:vietnd96/test-parent-pom.git
 git clone git@github.com:vietnd96/test-robot-framework.git
 ```
 
-4. Build source code in each repository following the order
+3. Build source code in each repository following the order
 
 - test-parent-pom
 - test-robot-framework
 
-5. Run test cases in test repository
+4. Run test cases in test repository
 
 ```shell
 cd test-robot-framework
@@ -49,4 +49,4 @@ Noted:
 
 A sample project with entire repositories together for the test execution.<br>
 
-* [test-automation-project](https://github.com/vietnd96/test-automation-project)
+* [test-automation-project](../../../test-automation-project)
