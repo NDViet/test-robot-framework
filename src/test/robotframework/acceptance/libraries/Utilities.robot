@@ -1,9 +1,9 @@
 *** Settings ***
-Library           com.ndviet.keyword.ConfigurationUtils    WITH NAME    ConfigurationUtils
-Library           com.ndviet.keyword.SortUtils    WITH NAME    SortUtils
-Library           com.ndviet.keyword.DateTimeUtils    WITH NAME    DateTimeUtils
-Library           com.ndviet.keyword.TemplateUtils    WITH NAME    TemplateUtils
-Library           com.ndviet.keyword.StringUtils    WITH NAME    StringUtils
-Library           com.ndviet.keyword.GeneralUtils    WITH NAME    GeneralUtils
-Library           com.ndviet.keyword.MathUtils    WITH NAME    MathUtils
-Library           com.ndviet.keyword.ListUtils    WITH NAME    ListUtils
+Library           org.ndviet.keyword.ConfigurationUtils    WITH NAME    ConfigurationUtils
+Library           org.ndviet.keyword.SortUtils    WITH NAME    SortUtils
+Library           org.ndviet.keyword.DateTimeUtils    WITH NAME    DateTimeUtils
+Library           org.ndviet.keyword.TemplateUtils    WITH NAME    TemplateUtils
+Library           org.ndviet.keyword.StringUtils    WITH NAME    StringUtils
+Library           org.ndviet.keyword.GeneralUtils    WITH NAME    GeneralUtils
+Library           org.ndviet.keyword.MathUtils    WITH NAME    MathUtils
+Library           org.ndviet.keyword.ListUtils    WITH NAME    ListUtils

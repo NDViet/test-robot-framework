@@ -1,2 +1,2 @@
 *** Settings ***
-Library           com.ndviet.keyword.WebUI    WITH NAME    WebUI
+Library           org.ndviet.keyword.WebUI    WITH NAME    WebUI

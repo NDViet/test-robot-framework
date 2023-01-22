@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.ndviet</groupId>
+        <groupId>org.ndviet</groupId>
         <artifactId>test-parent-pom</artifactId>
         <version>${revision}</version>
         <relativePath>../test-parent-pom/pom.xml</relativePath>
@@ -72,12 +72,12 @@
             <artifactId>robotframework</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.github.ndviet</groupId>
+            <groupId>org.ndviet</groupId>
             <artifactId>robot-keywords-webui</artifactId>
             <version>${test-java2robot-adapter.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.ndviet</groupId>
+            <groupId>org.ndviet</groupId>
             <artifactId>robot-keywords-utilities</artifactId>
             <version>${test-java2robot-adapter.version}</version>
         </dependency>
@@ -112,7 +112,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>io.github.ndviet</groupId>
+                                    <groupId>org.ndviet</groupId>
                                     <artifactId>robot-keywords-webui</artifactId>
                                     <version>${test-java2robot-adapter.version}</version>
                                     <type>jar</type>
@@ -121,7 +121,7 @@
                                     <includes>**/*.jar,**/*.xml,**/*.class,**/*.properties</includes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>io.github.ndviet</groupId>
+                                    <groupId>org.ndviet</groupId>
                                     <artifactId>robot-keywords-utilities</artifactId>
                                     <version>${test-java2robot-adapter.version}</version>
                                     <type>jar</type>
@@ -201,7 +201,7 @@
                         <extraPathDirectory>${jarsDirectory}</extraPathDirectory>
                     </extraPathDirectories>
                     <listeners>
-                        <listener>com.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
+                        <listener>org.ndviet.listener.RobotFramework.RFSeleniumListener</listener>
                     </listeners>
                     <variables>
                         <variable>testData.directory:${testData.directory}</variable>
