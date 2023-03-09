@@ -74,6 +74,7 @@
         <dependency>
             <groupId>org.ndviet</groupId>
             <artifactId>robot-keywords-webui</artifactId>
+            <classifier>shaded</classifier>
             <version>${test-java2robot-adapter.version}</version>
         </dependency>
         <dependency>
@@ -114,6 +115,7 @@
                                 <artifactItem>
                                     <groupId>org.ndviet</groupId>
                                     <artifactId>robot-keywords-webui</artifactId>
+                                    <classifier>shaded</classifier>
                                     <version>${test-java2robot-adapter.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
