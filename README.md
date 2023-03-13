@@ -1,4 +1,4 @@
-[![Run Test](https://github.com/vietnd96/test-robot-framework/actions/workflows/robotframework-maven.yml/badge.svg)](https://github.com/vietnd96/test-robot-framework/actions/workflows/robotframework-maven.yml)
+[![Run Test](https://github.com/ndviet/test-robot-framework/actions/workflows/robotframework-maven.yml/badge.svg)](https://github.com/ndviet/test-robot-framework/actions/workflows/robotframework-maven.yml)
 
 ## Introduction
 
@@ -15,13 +15,13 @@ Test repository with test case is created and executed in Robot Framework.<br>
 1. Clone repository "test-parent-pom" (**mandatory**)
 
 ```shell
-git clone git@github.com:vietnd96/test-parent-pom.git
+git clone git@github.com:ndviet/test-parent-pom.git
 ```
 
 2. Clone this test repository to the same directory
 
 ```shell
-git clone git@github.com:vietnd96/test-robot-framework.git
+git clone git@github.com:ndviet/test-robot-framework.git
 ```
 
 3. Build source code in each repository following the order
