@@ -1,6 +1,6 @@
 selenium:
   web_driver:
-    type: local
+    target: local
   screenshot:
     fileType: "png"
   enableTracing: false
