@@ -1,16 +1,19 @@
 selenium:
   web_driver:
-    target: local
+    target: remote
   screenshot:
     fileType: "png"
   enableTracing: false
   default:
     timeOut: 15
   hub:
-    url: "http://127.0.0.1:4444"
+    url: "http://testops.ndviet.org/selenium"
   browser:
     type: chrome
     chrome:
+      prefs:
+        se:recordVideo: true
+        se:screenResolution: "1920x1080"
       args:
         - "start-maximized"
         - "--incognito"
