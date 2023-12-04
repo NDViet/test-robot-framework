@@ -1,6 +1,10 @@
 *** Settings ***
-Test Setup        Open Browser    https://easyupload.io/
+Documentation     This resource contains the test cases for EasyUpload
+Suite Setup
+Suite Teardown
+Test Setup        WebUI.Open Browser    https://easyupload.io/
 Test Teardown     Close Browser
+Test Timeout      5 minutes
 Force Tags        EasyUpload
 Resource          ../../libraries/Web.robot
 
@@ -9,6 +13,12 @@ Perform To Upload File
     [Documentation]    @Author: Viet Nguyen
     ...    ---
     ...    This test is used to perform upload a file to https://easyupload.io/
+    ...    ---
+    [Setup]    Run Keywords    Open Browser    https://easyupload.io/
+    ...    AND    Capture Page Screenshot    ${TEST NAME}
+    [Teardown]
+    [Timeout]    10 minutes
+    [Tags]    Regression
     Verify Element Visible    Easy Upload.Upload.Drop Zone
     Capture Page Screenshot    ${TEST NAME}
     Upload File    Easy Upload.Upload.File    ${testData.directory}/Amount_convert.yml
