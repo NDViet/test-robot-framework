@@ -7,6 +7,6 @@ Easy Upload:
       Expiration Dropdown: //button[@data-id="expiration"]/..//i
       Option: //a[@role="option" and normalize-space()="${value}"]
       Password: //input[@name="password"]
-    Link: //*[@id="upload-link"]
+    Link: //*[@id="upload-links"]
     Copy Link To Clipboard: //img[@title="Upload File"]
     QR Code: //*[@id="qrcode"]//img

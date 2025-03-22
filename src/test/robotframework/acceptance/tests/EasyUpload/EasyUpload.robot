@@ -16,14 +16,13 @@ Perform To Upload File
     ...    ---
     [Setup]    Run Keywords    Open Browser    https://easyupload.io/
     ...    AND    Capture Page Screenshot    ${TEST NAME}
-    [Teardown]
     [Timeout]    10 minutes
     [Tags]    Regression
     Verify Element Visible    Easy Upload.Upload.Drop Zone
     Capture Page Screenshot    ${TEST NAME}
     Upload File    Easy Upload.Upload.File    ${testData.directory}/Amount_convert.yml
     Click    Easy Upload.Upload.Settings.Expiration Dropdown
-    &{variables}    Create Dictionary    value=1 days
+    &{variables}    Create Dictionary    value=1 day
     Click    Easy Upload.Upload.Settings.Option    ${variables}
     Capture Page Screenshot    ${TEST NAME}
     Click    Easy Upload.Upload.Submit Button
